@@ -1,0 +1,50 @@
+[package]
+name = "bevy_mikktspace-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[lib]
+path = "src/lib.rs"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+arbitrary = { version = "1", features = ["derive"] }
+
+[dependencies.bevy_mikktspace]
+path = ".." # This version
+# version = "0.16" # Last published version
+
+[dependencies.mikktspace-sys]
+version = "0.1.1"
+
+[[bin]]
+name = "one_triangle"
+path = "fuzz_targets/one_triangle.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "many_triangles"
+path = "fuzz_targets/many_triangles.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "one_face"
+path = "fuzz_targets/one_face.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "many_faces"
+path = "fuzz_targets/many_faces.rs"
+test = false
+doc = false
+bench = false
